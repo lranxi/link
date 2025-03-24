@@ -1,4 +1,4 @@
-package com.lyranxi.link.user.bo.permission;
+package com.lyranxi.link.user.bo.api;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -21,7 +21,7 @@ import java.io.Serializable;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class PermissionCreateBO implements Serializable {
+public class ApiInfoCreateBO implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 1L;

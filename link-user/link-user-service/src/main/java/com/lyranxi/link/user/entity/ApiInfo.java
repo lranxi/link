@@ -13,9 +13,9 @@ import lombok.Data;
  * 权限表
  * @TableName permission
  */
-@TableName(value ="permission")
+@TableName(value ="api_info")
 @Data
-public class Permission implements Serializable {
+public class ApiInfo implements Serializable {
     /**
      * id
      */

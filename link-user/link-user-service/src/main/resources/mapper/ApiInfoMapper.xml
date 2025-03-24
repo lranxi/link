@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lyranxi.link.user.mapper.ApiInfoMapper">
+    <update id="batchUpdateById">
+        <foreach collection="apiInfos" item="item" open="(" separator="," close=")">
+            update api_info set api_name = #{item.apiName},api_path = #{item.apiPath},api_method =
+            #{item.apiMethod},whitelist = #{item.whitelist},scope = #{item.scope},author = #{item.author}
+            where id = #{item.id}
+        </foreach>
+    </update>
+
+    <select id="selectAll" resultType="com.lyranxi.link.user.entity.ApiInfo">
+        select * from api_info
+    </select>
+</mapper>
