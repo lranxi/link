@@ -1,0 +1,38 @@
+server:
+  port: 18080
+
+logging:
+  level:
+    io.netty.resolver.dns: off
+
+spring:
+  application:
+    name: link-gateway
+  cloud:
+    nacos:
+      config:
+        server-addr: 127.0.0.1:8848
+        namespace: d23771f8-f8fc-4d21-ba4f-3ab1376704b2
+      discovery:
+        server-addr: 127.0.0.1:8848
+        namespace: d23771f8-f8fc-4d21-ba4f-3ab1376704b2
+
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowed-origins: "*"
+            allowed-methods: "*"
+            allowed-headers: "*"
+            allowed-origin-patterns: "*"
+      routes:
+        - id: link-user-service
+          uri: lb://link-user-service
+          predicates:
+            - Path=/user-service/**
+          filters:
+            - StripPrefix=1
+
