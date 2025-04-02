@@ -21,7 +21,7 @@ import java.util.Set;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class RoleAssignPermissionBO implements Serializable {
+public class RoleAssignMenuBO implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 1L;
@@ -36,6 +36,6 @@ public class RoleAssignPermissionBO implements Serializable {
      * 权限ID
      */
     @NotEmpty(message = "权限ID不能为空")
-    private Set<String> permissionIds;
+    private Set<String> menuIds;
 
 }

@@ -3,11 +3,8 @@ package com.lyranxi.link.user.service;
 import cn.hutool.core.collection.CollectionUtil;
 import com.lyranxi.link.common.exception.BusinessException;
 import com.lyranxi.link.common.util.asserts.AssertBusinessException;
-import com.lyranxi.link.user.biz.RoleBiz;
-import com.lyranxi.link.user.biz.RolePermissionMappingBiz;
-import com.lyranxi.link.user.biz.UserBiz;
-import com.lyranxi.link.user.biz.UserRoleMappingBiz;
-import com.lyranxi.link.user.bo.role.RoleAssignPermissionBO;
+import com.lyranxi.link.user.biz.*;
+import com.lyranxi.link.user.bo.role.RoleAssignMenuBO;
 import com.lyranxi.link.user.bo.role.RoleAssignUserBO;
 import com.lyranxi.link.user.bo.role.RoleCreateBO;
 import com.lyranxi.link.user.converter.RoleConverter;
@@ -31,7 +28,7 @@ import java.util.Objects;
 public class RoleService {
 
     private final RoleBiz roleBiz;
-    private final RolePermissionMappingBiz rolePermissionMappingBiz;
+    private final RoleMenuMappingBiz roleMenuMappingBiz;
     private final UserBiz userBiz;
     private final UserRoleMappingBiz userRoleMappingBiz;
 
@@ -84,12 +81,12 @@ public class RoleService {
      * @return 操作是否成功
      */
     @Transactional(rollbackFor = Exception.class)
-    public boolean assignPermissions(RoleAssignPermissionBO params) {
+    public boolean assignMenus(RoleAssignMenuBO params) {
         assertRoleExist(params.getRoleId());
         // 删除原始配置
-        rolePermissionMappingBiz.deleteByRoleId(params.getRoleId());
+        roleMenuMappingBiz.deleteByRoleId(params.getRoleId());
         // 保存新数据
-        return rolePermissionMappingBiz.insertMappings(params.getRoleId(), params.getPermissionIds());
+        return roleMenuMappingBiz.insertMappings(params.getRoleId(), params.getMenuIds());
     }
 
     /**
