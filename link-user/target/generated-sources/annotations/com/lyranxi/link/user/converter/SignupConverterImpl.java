@@ -11,21 +11,5 @@ import javax.annotation.processing.Generated;
 )
 public class SignupConverterImpl implements SignupConverter {
 
-    @Override
-    public User toEntity(SignupBO params) {
-        if ( params == null ) {
-            return null;
-        }
 
-        User user = new User();
-
-        user.setTenantId( params.getTenantId() );
-        user.setStoreId( params.getStoreId() );
-        user.setUsername( params.getUsername() );
-        user.setNickname( params.getNickname() );
-        user.setAvatar( params.getAvatar() );
-        user.setPhone( params.getPhone() );
-
-        return user;
-    }
 }

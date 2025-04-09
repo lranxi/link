@@ -32,8 +32,6 @@ public class UserServiceTest {
         signupBO.setPassword("password");
         signupBO.setOperatorId(1L);
 
-        Result<Boolean> result = userService.signup(signupBO);
-        log.info("{}",result);
     }
 
     public static void main(String[] args) {

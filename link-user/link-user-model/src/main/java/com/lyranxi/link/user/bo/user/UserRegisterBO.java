@@ -68,6 +68,10 @@ public class UserRegisterBO implements Serializable {
     @Size(min = 6, max = 64, message = "密码长度最小为6位，最大为64位")
     private String password;
 
+    /** 用户角色 */
+    @NotNull(message = "请选择用户角色")
+    private String roleId;
+
     /**
      * 是否为系统用户
      */

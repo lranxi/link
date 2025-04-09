@@ -3,21 +3,22 @@ package com.lyranxi.link.user.service;
 import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.util.RandomUtil;
 import cn.hutool.core.util.StrUtil;
-import cn.hutool.crypto.symmetric.PBKDF2;
 import com.lyranxi.link.common.exception.BusinessException;
 import com.lyranxi.link.common.util.asserts.AssertBusinessException;
 import com.lyranxi.link.common.util.uuid.UuidUtil;
 import com.lyranxi.link.user.biz.RoleBiz;
 import com.lyranxi.link.user.biz.UserBiz;
 import com.lyranxi.link.user.biz.UserRoleMappingBiz;
-import com.lyranxi.link.user.bo.user.UserRegisterBO;
 import com.lyranxi.link.user.bo.user.UserAssignRoleBO;
 import com.lyranxi.link.user.bo.user.UserModifyPasswordBO;
+import com.lyranxi.link.user.bo.user.UserRegisterBO;
 import com.lyranxi.link.user.constant.UserConstant;
 import com.lyranxi.link.user.entity.Role;
 import com.lyranxi.link.user.entity.User;
+import com.lyranxi.link.user.utils.PasswordUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Objects;
 
@@ -32,12 +33,27 @@ import java.util.Objects;
 @RequiredArgsConstructor
 public class UserService {
 
-    private static final String ENCRYPT_ALGORITHM = "PBKDF2WithHmacSHA1";
-    private static final int ENCRYPT_KEY_LENGTH = 512;
-
     private final UserBiz userBiz;
     private final RoleBiz roleBiz;
     private final UserRoleMappingBiz userRoleMappingBiz;
+
+    @Transactional(rollbackFor = Exception.class)
+    public boolean signup(UserRegisterBO params) {
+        this.assertPhoneUnique(params.getPhone());
+        this.assertUsernameUnique(params.getTenantId(), params.getStoreId(), params.getUsername());
+
+        // 保存用户信息
+        User User = this.signupBO2User(params);
+        userBiz.insert(User);
+
+        // 分配角色
+        UserAssignRoleBO assignRoleParams = UserAssignRoleBO.builder()
+                .uid(User.getUid())
+                .roleId(params.getRoleId())
+                .build();
+        this.assignRole(assignRoleParams);
+        return Boolean.TRUE;
+    }
 
 
     /**
@@ -49,7 +65,7 @@ public class UserService {
     public boolean resetPassword(String uid) {
         User user = this.assertUserExist(uid);
 
-        user.setPasswordHash(encryptPassword(UserConstant.DEFAULT_PASSWORD, user.getSalt()));
+        user.setPasswordHash(PasswordUtil.encrypt(UserConstant.DEFAULT_PASSWORD, user.getSalt()));
         return userBiz.updateByPrimaryKey(user);
     }
 
@@ -82,11 +98,11 @@ public class UserService {
     public boolean modifyPassword(UserModifyPasswordBO params) {
         User user = this.assertUserExist(params.getUid());
 
-        String oldPasswordEncrypt = encryptPassword(params.getOldPassword(), user.getSalt());
+        String oldPasswordEncrypt = PasswordUtil.encrypt(params.getOldPassword(), user.getSalt());
         if (!StrUtil.equals(oldPasswordEncrypt, user.getPasswordHash())) {
             throw new BusinessException("旧密码错误");
         }
-        user.setPasswordHash(encryptPassword(params.getNewPassword(), user.getSalt()));
+        user.setPasswordHash(PasswordUtil.encrypt(params.getNewPassword(), user.getSalt()));
         return userBiz.updateByPrimaryKey(user);
     }
 
@@ -146,24 +162,11 @@ public class UserService {
         user.setNickname(params.getNickname());
         user.setAvatar(params.getAvatar());
         user.setPhone(params.getPhone());
-        user.setPasswordHash(encryptPassword(params.getPassword(), salt));
+        user.setPasswordHash(PasswordUtil.encrypt(params.getPassword(), salt));
         user.setSalt(salt);
         user.setSystem(params.getSystem());
         user.setCreatedBy(params.getOperatorId());
         return user;
-    }
-
-
-    /**
-     * 加密密码
-     *
-     * @param password 明文密码
-     * @param salt     盐
-     * @return pbkdf2 加密后的密码
-     */
-    private String encryptPassword(String password, String salt) {
-        PBKDF2 pbkdf2 = new PBKDF2(ENCRYPT_ALGORITHM, ENCRYPT_KEY_LENGTH, 1024);
-        return pbkdf2.encryptHex(password.toCharArray(), salt.getBytes());
     }
 
 
