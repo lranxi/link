@@ -3,6 +3,7 @@
 *.iml
 *.idea
 target/
+**/target
 logs/
 httpTest/
 data/tempUpload/
