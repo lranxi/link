@@ -1,7 +1,0 @@
-com/lyranxi/link/user/mapper/UserMapper.class
-com/lyranxi/link/user/biz/UserBiz.class
-com/lyranxi/link/user/controller/HealthCheckController.class
-com/lyranxi/link/user/converter/SignupConverter.class
-com/lyranxi/link/user/service/LoginService.class
-com/lyranxi/link/user/entity/User.class
-com/lyranxi/link/user/UserApplication.class
