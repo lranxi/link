@@ -1,0 +1,14 @@
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          #禁止自动根据服务名进行转发,只能根据下面配合的routes方案转发
+          enabled: false
+      routes:
+        - id: app-system
+          uri: lb://app-system
+          predicates:
+            - Path=/system/**
+          filters:
+            - StripPrefix=1

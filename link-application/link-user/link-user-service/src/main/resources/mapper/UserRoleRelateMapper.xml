@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lyranxi.link.user.mapper.UserRoleRelateMapper">
+
+
+    <select id="selectRolesByUserId" resultType="com.lyranxi.link.user.entity.Role">
+        select r.*
+        from user_role_relate ur
+                 left join role r on r.id = ur.role_id
+        where ur.user_id = #{userId}
+          and r.deleted = 0
+          and r.enable = 1
+    </select>
+    <select id="getUserByRoleId" resultType="com.lyranxi.link.user.entity.User">
+        select u.*
+        from user_role_relate ur
+                 left join `user` u on ur.role_id = #{roleId}
+        where u.deleted = 0
+    </select>
+
+
+</mapper>

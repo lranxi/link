@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lyranxi.link.user.mapper.MenuMapper">
+
+
+    <select id="selectMenuListByRoleIdAndPlatform" resultType="com.lyranxi.link.user.entity.Menu">
+        select distinct m.*
+        from role_menu_relate mr
+                 inner join menu m on m.id = mr.menu_id
+        where mr.role_id = #{roleId}
+          and m.platform = #{platform}
+          and m.enable = 1
+          and m.show = 1
+        order by m.sort
+    </select>
+</mapper>

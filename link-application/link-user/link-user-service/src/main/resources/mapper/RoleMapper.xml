@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lyranxi.link.user.mapper.RoleMapper">
+
+
+    <update id="logicDelete">
+        update role
+        set deleted = null,
+        update_by = #{operatorId}
+        where id = #{roleId}
+    </update>
+    <select id="selectUserRole" resultType="com.lyranxi.link.user.entity.Role">
+        select *
+        from user_role_relate ur
+                 left join role r on r.id = ur.role_id
+        where ur.user_id = #{userId}
+          and r.deleted = 0
+          and r.enable = 1
+    </select>
+    <select id="selectApiIdsByRoleIdAndPlatform" resultType="java.lang.Long">
+        select a.id
+        from role_menu_relate mr
+                 inner join menu_api_relate ar on ar.menu_id = mr.menu_id
+                 inner join api a on a.id = ar.api_id
+        where mr.role_id = #{roleId}
+          and a.scope = #{platform}
+
+    </select>
+    <select id="selectByCondition" resultType="com.lyranxi.link.user.vo.RoleVO">
+        select * from role r
+        left join tenant t on t.id = r.tenant_id
+        left join brand b on b.id = r.brand_id
+        left join store s on s.id = r.store_id
+        <where>
+            <if test="params.tenantId != null and params.tenantId != ''">
+                and r.tenant_id = #{params.tenantId}
+            </if>
+            <if test="params.brandId != null and params.brandId != ''">
+                and r.brand_id = #{params.brandId}
+            </if>
+            <if test="params.storeId != null and params.storeId != ''">
+                and r.store_id =#{params.storeId}
+            </if>
+            <if test="params.roleName != null and params.roleName != ''">
+                and r.role_name like concat('%',#{params.roleName},'%')
+            </if>
+        </where>
+        order by r.create_time desc
+    </select>
+
+</mapper>

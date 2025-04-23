@@ -1,0 +1,38 @@
+server:
+  port: 18080
+
+spring:
+  application:
+    name: app-system
+
+  main:
+    allow-bean-definition-overriding: true
+
+  cloud:
+    nacos:
+      config:
+        server-addr: 127.0.0.1:8848
+        namespace: d23771f8-f8fc-4d21-ba4f-3ab1376704b2
+      discovery:
+        server-addr: 127.0.0.1:8848
+        namespace: d23771f8-f8fc-4d21-ba4f-3ab1376704b2
+    openfeign:
+      okhttp:
+        enabled: true
+      httpclient:
+        enabled: false
+
+
+  jackson:
+    time-zone: GMT+8
+  data:
+    redis:
+      host: 127.0.0.1
+      port: 6379
+      password: 123456
+      database: 1
+
+logging:
+  level:
+    com.lyranxi: debug
+
