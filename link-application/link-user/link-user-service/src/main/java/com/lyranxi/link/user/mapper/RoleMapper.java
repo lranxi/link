@@ -1,8 +1,6 @@
 package com.lyranxi.link.user.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.lyranxi.link.common.page.Pageable;
 import com.lyranxi.link.mysql.page.Page;
 import com.lyranxi.link.user.bo.RoleSearchBO;
 import com.lyranxi.link.user.entity.Role;

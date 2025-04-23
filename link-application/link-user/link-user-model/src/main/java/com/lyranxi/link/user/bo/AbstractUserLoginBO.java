@@ -1,7 +1,6 @@
 package com.lyranxi.link.user.bo;
 
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 
 import java.io.Serial;

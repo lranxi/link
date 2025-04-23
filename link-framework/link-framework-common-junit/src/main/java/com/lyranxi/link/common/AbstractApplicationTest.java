@@ -1,9 +1,8 @@
 package com.lyranxi.link.common;
 
-import cn.hutool.json.JSONUtil;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.lyranxi.link.common.constant.TraceConstant;
 import com.lyranxi.link.common.util.trace.MdcUtil;
-import com.fasterxml.jackson.core.type.TypeReference;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.web.client.TestRestTemplate;

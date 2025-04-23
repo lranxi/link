@@ -1,7 +1,7 @@
 package com.lyranxi.link.user.mapper;
 
-import com.lyranxi.link.user.entity.Store;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.lyranxi.link.user.entity.Store;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

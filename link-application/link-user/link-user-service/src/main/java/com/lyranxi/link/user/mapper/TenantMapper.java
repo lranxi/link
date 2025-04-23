@@ -5,7 +5,6 @@ import com.lyranxi.link.user.entity.Tenant;
 import com.lyranxi.link.user.token.UserTenantInfo;
 import org.apache.ibatis.annotations.Param;
 
-import java.util.List;
 import java.util.Set;
 
 /**

@@ -1,7 +1,6 @@
 package com.lyranxi.link.user.feign;
 
 import com.lyranxi.link.common.bo.CoreBO;
-import com.lyranxi.link.user.bo.BrandCreateBO;
 import com.lyranxi.link.user.bo.TenantCreateBO;
 import com.lyranxi.link.user.constant.UserConstant;
 import com.lyranxi.link.web.result.Result;

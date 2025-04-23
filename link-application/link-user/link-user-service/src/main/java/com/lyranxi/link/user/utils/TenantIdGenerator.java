@@ -1,9 +1,5 @@
 package com.lyranxi.link.user.utils;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
 /**
  * 6位字符门店ID生成器
  * dict示例(34位,没有字母l): 0123456789abcdefghijkmnopqrstuvwxyz

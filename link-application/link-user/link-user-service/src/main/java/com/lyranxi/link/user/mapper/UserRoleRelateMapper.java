@@ -1,9 +1,9 @@
 package com.lyranxi.link.user.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.lyranxi.link.user.entity.Role;
 import com.lyranxi.link.user.entity.User;
 import com.lyranxi.link.user.entity.UserRoleRelate;
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

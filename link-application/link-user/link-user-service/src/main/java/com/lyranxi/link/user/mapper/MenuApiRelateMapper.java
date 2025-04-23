@@ -1,7 +1,7 @@
 package com.lyranxi.link.user.mapper;
 
-import com.lyranxi.link.user.entity.MenuApiRelate;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.lyranxi.link.user.entity.MenuApiRelate;
 import org.apache.ibatis.annotations.Param;
 
 /**

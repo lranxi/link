@@ -1,7 +1,7 @@
 package com.lyranxi.link.user.mapper;
 
-import com.lyranxi.link.user.entity.Brand;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.lyranxi.link.user.entity.Brand;
 import org.apache.ibatis.annotations.Param;
 
 /**

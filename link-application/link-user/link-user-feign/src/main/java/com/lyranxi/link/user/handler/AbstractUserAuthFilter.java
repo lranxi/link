@@ -7,7 +7,6 @@ import com.lyranxi.link.common.enums.PlatformEnum;
 import com.lyranxi.link.common.http.PrivilegeUrl;
 import com.lyranxi.link.common.util.trace.MdcUtil;
 import com.lyranxi.link.user.http.HttpContextManage;
-import com.lyranxi.link.user.token.UserTenantInfo;
 import com.lyranxi.link.user.token.UserToken;
 import com.lyranxi.link.user.vo.ApiVO;
 import jakarta.servlet.*;
