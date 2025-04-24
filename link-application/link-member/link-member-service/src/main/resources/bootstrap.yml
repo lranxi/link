@@ -1,0 +1,53 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: core-member-service
+
+  main:
+    allow-bean-definition-overriding: true
+
+  cloud:
+    nacos:
+      config:
+        server-addr: 127.0.0.1:8848
+        namespace: d23771f8-f8fc-4d21-ba4f-3ab1376704b2
+        extension-configs:
+          - data-id: core-member.yaml
+            refresh: true
+      discovery:
+        server-addr: 127.0.0.1:8848
+        namespace: d23771f8-f8fc-4d21-ba4f-3ab1376704b2
+    openfeign:
+      okhttp:
+        enabled: true
+      httpclient:
+        enabled: false
+
+  jackson:
+    time-zone: GMT+8
+  data:
+    redis:
+      host: 127.0.0.1
+      port: 6379
+      password: 123456
+      database: 1
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/link_user?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    username: root
+    password: 123456
+
+logging:
+  level:
+    com.lyranxi: debug
+
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/**/*.xml
+  type-aliases-package: com.lyranxi.link.member.entity
+
+
+
+
+
