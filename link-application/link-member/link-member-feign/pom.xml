@@ -21,11 +21,11 @@
         </dependency>
         <dependency>
             <groupId>com.lyranxi</groupId>
-            <artifactId>link-user-model</artifactId>
+            <artifactId>link-framework-web-starter</artifactId>
         </dependency>
         <dependency>
             <groupId>com.lyranxi</groupId>
-            <artifactId>link-framework-web-starter</artifactId>
+            <artifactId>link-member-model</artifactId>
         </dependency>
     </dependencies>
 
