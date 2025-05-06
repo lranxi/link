@@ -46,8 +46,10 @@ logging:
 mybatis-plus:
   mapper-locations: classpath*:/mapper/**/*.xml
   type-aliases-package: com.lyranxi.link.user.entity
-
-
-
-
-
+weixin:
+  miniapp:
+    app-id: wxd3ee7524e6df41c5
+    secret: 1941ab4cc830d6b6858efc0586abeea5
+    token: ZAiCb9tRY3Nx5hFjDTcDbhRbWr1naJTB
+    aes-key: JifLFvcZCxO88QIhKpl0mXp1YoKMwnXohU3JID5Wqaj
+    msg-data-format: JSON
