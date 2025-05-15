@@ -1,4 +1,4 @@
-package com.lyranxi.link.user.controller;
+package com.lyranxi.link.operation.controller;
 
 import com.lyranxi.link.common.annotation.Api;
 import com.lyranxi.link.user.bo.MenuCreateBO;
