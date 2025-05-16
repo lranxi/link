@@ -1,4 +1,4 @@
-package com.lyranxi.link.user.cache;
+package com.lyranxi.link.operation.cache;
 
 import com.lyranxi.link.redis.cache.local.AbstractLocalCache;
 import com.lyranxi.link.redis.cache.local.LocalCacheProperties;

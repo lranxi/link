@@ -1,8 +1,8 @@
-package com.lyranxi.link.user.config;
+package com.lyranxi.link.operation.config;
 
 
-import com.lyranxi.link.user.filter.AuthFilter;
-import com.lyranxi.link.user.handler.AuthenticationHandler;
+import com.lyranxi.link.operation.filter.AuthFilter;
+import com.lyranxi.link.operation.handler.AuthenticationHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;

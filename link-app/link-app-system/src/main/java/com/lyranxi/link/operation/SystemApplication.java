@@ -1,4 +1,4 @@
-package com.lyranxi.link.user;
+package com.lyranxi.link.operation;
 
 import com.lyranxi.link.common.enums.PlatformEnum;
 import com.lyranxi.link.user.handler.ApiRegisterHandler;
